@@ -1,5 +1,5 @@
 # CS 104 Project Repository
 
-- **Name**: Student Name
-- **USC ID**: 1234567890
-- **Email**: ttrojan@usc.edu
+- **Name**: Vanessa Lopez
+- **USC ID**: 8344903480
+- **Email**: vanessll@usc.edu
