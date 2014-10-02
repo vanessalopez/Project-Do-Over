@@ -1,0 +1,35 @@
+#include <iostream>
+
+using namespace std;
+
+void mainmenu();
+
+int main (){
+
+  cout << "Please enter a number for your selection: " << endl;
+  
+
+
+
+  return 0;
+}
+
+void mainmenu(){
+  int choice;
+
+  cout << "1. Log in" << endl;
+  cout << "2. Create a new user" << endl;
+  cout << "3. Quit" << endl;
+
+  cin >> choice;
+  
+  if (choice == 1)
+    login();
+  else if (choice == 2)
+    newuser();
+  else if (choice == 3)
+    return 0;
+  else 
+    mainmenu;
+
+}
