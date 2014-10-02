@@ -12,14 +12,20 @@ void check();
 
 int main(int argc, char* argv[]){
 
-  string userline;
-  int numusers;
-  int usercount;
-  string movieline;
-  int nummovies;
-  int moviecount;
+  Map<string, string> newMap;
 
-  //checks if the user inputs 2 file
+  string userline; //stores the lines in the user file
+  int numusers; // counts the number of users in the file
+  int usercount; //count the lines in the user file
+  string name;
+  string username; 
+  string movieline; //stores the lines in the movie file
+  int nummovies;// counts the number of movie in the file
+  int moviecount; //count the lines in the movie file
+  string movie; 
+  string keyword;
+
+  //checks if the user inputs 2 files
   if (argc != 3){
     cout << "You did not enter the correct number of arguments. (User information and movie information)" << endl;
       return 0;
@@ -36,19 +42,20 @@ int main(int argc, char* argv[]){
       return 0;
   }
 
-  while (getline(file,line)){
+  //counts the number of lines and users in the file
+  while (getline(userfile,userline)){
     usercount++;
-    if (line.size==0){
+    if (userline.size==0){
       break;
     }
-    if(line.find("BEGIN")){
-      users++;
+    if(userline.find("BEGIN")){
+      numusers++;
     }
   }
 
     int *users = new int[numusers];
    
-    getline(file, line);
+    getline(userfile, userline);
     
     //stores information into an array
     string temp;
@@ -56,8 +63,13 @@ int main(int argc, char* argv[]){
     ss.clear();
 
     ss << line;
-
-
+    
+    for(int i=0; i<numusers; i++){
+      if(userline.find("BEGIN")){
+	ss >> begin >> username;
+      }
+      if(userline.find(""))
+    }
 
 
 
