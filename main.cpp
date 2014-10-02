@@ -1,5 +1,10 @@
 #include <iostream>
-#include "Map.h"
+#include "map.h"
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <cstring>
+
 
 
 using namespace std;
@@ -8,8 +13,8 @@ void mainmenu();
 void login();
 void newuser();
 void check();
-int users(username);
-void moviestuff(int nummovies, string movie, string keyword)
+int users(string username);
+void moviestuff(int nummovies, string movie, string keyword);
 
 
 int main(int argc, char* argv[]){
@@ -133,7 +138,7 @@ int main(int argc, char* argv[]){
       }
       while(userline.find("KEYWORD:")){
 	ss1 >> n >> keyword;
-	moviestuff(nummovies, movie, keyword; keywords)
+	moviestuff(nummovies, movie, keyword, keywords)
       }
  
     }
@@ -184,7 +189,7 @@ void login(){
   cout << "Enter your username: " << endl;
   cin >> username;
   // going to have to pass in this username to check if it exits on the list or not.
-  check = users(username);
+  //check = users(username);
 
   if (check == 1){
     cout << "You have entered the wrong username!" << endl;
@@ -203,33 +208,33 @@ void newuser(){
   cout <<  "Enter username: " << endl;
     cin >> username;
   
-  check = users(username);
+    //check = users(username);
   
   if (check = 1){
     cout <<  "Sorry that username has already been taken." << endl;
       newuser();
   }
-  else
+  else{
     cout << "Enter your name: " << endl;
       cin >> name;
       moviemenu(username, name);
-      
+  }  
 }
 
-//check if username exists
-int users(username){
+*//check if username exists
+int users(string username){
   string *ids = {vanessll, ttrojan, aaroncot, dkempe}
-  int check;
+  int checks;
   
   if (int i=0; i<=4; i++){
-    if(ids[i] == username)
-      check = 2;
+    if(ids[i] == username);
+      checks = 2;
   }
-  else 
-    check = 1;
-  
-  return check;
-}
+  else {
+    checks = 1;
+  }
+  return checks;
+}*/
 
 void moviemenu(){
   int option;
@@ -245,11 +250,11 @@ void moviemenu(){
 
   if (option == 1){
     cout << "Enter movie title" << endl;
-    seach (moviechoice, title);
+    //seach (moviechoice, title);
 }
   else if (option == 2){
     cout << "Enter movie key" << endl;
-    search (moviechoice, key)
+    // search (moviechoice, key);
 }
   else if (option == 3){
     cout << "You have successfully logged out" << endl;
