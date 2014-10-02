@@ -2,8 +2,10 @@
 #include <iostream>
 
 
+MapItem <keyType, valueType> *head=NULL;
+MapItem <keyType, valueType> *tail=NULL;
 
-int size () const{ // returns the number of key-value pairs
+int Map::size () const{ // returns the number of key-value pairs
   int count=0;
   
   while(head!=NULL){
@@ -27,16 +29,18 @@ void add (keyType key, valueType value){
   MapItem* newMap = new MapItem;
 
   if(head == NULL){
-    //if the list is empty
+    //if the list is empty just need to put 
     head = newMap;
     tail = newMap;
     newMap->next=NULL;
     newMap->prev=NULL;
-    
+
+    newMap->key=key;
+    newMap->value=value;
   }
 
   else if{
-    
+    //the key does exits and already has a value
   }
 
   else{

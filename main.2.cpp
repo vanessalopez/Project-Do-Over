@@ -1,4 +1,6 @@
- #include <iostream>
+#include <iostream>
+#include "Map.h"
+
 
 using namespace std;
 
@@ -34,7 +36,15 @@ int main(int argc, char* argv[]){
       return 0;
   }
 
-
+  while (getline(file,line)){
+    usercount++;
+    if (line.size==0){
+      break;
+    }
+    if(line.find("BEGIN")){
+      users++;
+    }
+  }
 
     int *users = new int[numusers];
    
