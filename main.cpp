@@ -15,6 +15,7 @@ void newuser();
 void check();
 int users(string username);
 void moviestuff(int nummovies, string movie, string keyword);
+void moviemenu()
 
 
 int main(int argc, char* argv[]){
@@ -141,7 +142,6 @@ int main(int argc, char* argv[]){
 	moviestuff(nummovies, movie, keyword, keywords)
       }
  
-    }
 
 
 
@@ -151,6 +151,7 @@ int main(int argc, char* argv[]){
   cout << "Please enter a number for your selection: " << endl;
   
   mainmenu();
+
 
   return 0;
 }
