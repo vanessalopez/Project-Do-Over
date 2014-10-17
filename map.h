@@ -1,8 +1,6 @@
 #ifndef __MAP_H__
 #define __MAP_H__
 
-#include "map.h"
-
 template <class keyType, class valueType>
 struct MapItem
 {
@@ -26,11 +24,11 @@ class Map
 
     ~Map (); // destructor
 
-    Map & operator = (const Map<keyType, valueType>& other);
+    Map& operator = (const Map<keyType, valueType> & other);
 
     int size () const; // returns the number of key-value pairs
 
-    void add (const keyType key, valueType value); 
+    void add (const keyType& key, valueType& value); 
       /* Adds a new association between the given key and the given value.
          If the key already has an association, it should do nothing.
       */
@@ -39,8 +37,6 @@ class Map
      /* Removes the association for the given key.
         If the key has no association, it should do nothing. */
 
-    const valueType & get (const keyType & key);
-                        //or
     const valueType & get (const keyType & key) const;
      /* Returns the value associated with the given key.
         If the key existed in the map, success should be set to true.
@@ -56,7 +52,7 @@ class Map
         all the associations. */
 
      MapItem <keyType, valueType> *head, *tail;
-	   int size = 0; //keeps count of the list 
+	   int count; //keeps count of the list 
 
      /* If you like, you can add further data fields and private
         helper methods. */
