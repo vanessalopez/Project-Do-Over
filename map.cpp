@@ -142,28 +142,37 @@ template <class keyType, class valueType>
 void Map<keyType, valueType>::remove (const keyType key)
 {
   MapItem<keyType, valueType> *iter;
+  iter=head;
   //if the list is empty throw exeption
   if (head==NULL){
     throw NoSuchElementException();
   }
-  //if the list is not empty and has a key associated
-  else if (this->key==key){
-    //means that we found the place where the key matches
-    iter=head;
-    //iter->next=head->next;
-
-    while (iter->key!=key){
-      iter->prev=iter;
-      iter=iter->next;  
-    }
-    //iter is now pointing to the the place to the key we want to remove
-    (iter->prev)->next = iter->next;
-
-    this->count--;
-  } 
+  //go throught the list check
+    while (iter!=NULL){
+      //check if the key is in the list
+      if (iter->key==key){
+      //this is only going to run if iter->key==key!
+      //means that we found the place where the key matches
+      //then remove the value in that location
+          //connects iter->prev to iter->next
+          (iter->next)->prev=iter->prev;
+          (iter->prev)->next=iter->next;
+          //delete what is in iter
+          delete iter;
+          this->count--;
+      }
+        if(iter==tail->next){
+            std::cout << "There is no association for that key" << std::endl;
+        }
+        else if (iter==NULL)
+        else{
+        iter->prev=iter;
+        iter=iter->next; 
+        } 
+      }
   //means that there is no association with the key
   else{
-      std::cout << "There is no association for that key" << std::endl;
+      
   }  
 }
 
