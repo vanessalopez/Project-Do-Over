@@ -169,10 +169,6 @@ void Map<keyType, valueType>::remove (const keyType key)
         iter=iter->next; 
       } 
     }
-  //means that there is no association with the key
-  else{
-    cout << "The key provided is not in the list" << endl;  
-  }  
 }
 
 
