@@ -161,18 +161,17 @@ void Map<keyType, valueType>::remove (const keyType key)
           delete iter;
           this->count--;
       }
-        if(iter==tail->next){
+      else if(iter==tail->next){
             std::cout << "There is no association for that key" << std::endl;
         }
-        else if (iter==NULL)
-        else{
+      else{
         iter->prev=iter;
         iter=iter->next; 
-        } 
-      }
+      } 
+    }
   //means that there is no association with the key
   else{
-      
+    cout << "The key provided is not in the list" << endl;  
   }  
 }
 
