@@ -51,7 +51,7 @@ template <class keyType, class valueType> Map<keyType, valueType>::~Map()
 template <class keyType, class valueType> 
 Map<keyType, valueType>& Map<keyType, valueType>::operator= (const Map<keyType, valueType>& other){
   if (this!=&other){
-    //this-pointer to address an &other gets the memory address of the value and compares
+    //this is a pointer to address an &other gets the memory address of the value which are being compared
     MapItem<keyType, valueType> *iter;
     iter=this->head;
     while(iter!=NULL){
@@ -88,6 +88,12 @@ If the key already has an association, it should do nothing.
 template <class keyType, class valueType>
 void Map<keyType, valueType>::add (const keyType& key, valueType& value)
 {
+  // check if key is in map (think about functions youve already implemented)
+  // if key is not in map
+  //    create new map item
+  //    set map items key and value to key and value
+  //    add new item to either head or tail (remember to change next/prev pointers)
+  // end
   MapItem<keyType, valueType> *newitem = new MapItem<keyType, valueType>();
   newitem=head;
   //check if the list is empty
@@ -209,16 +215,16 @@ void Map<keyType, valueType>::merge (const Map<keyType, valueType> & other){
 MapItem<keyType, valueType> *otherIter;
   otherIter=other.head;
 MapItem<keyType, valueType> *iter;
-  iter=this.head;
+  iter=this->head;
       while (iter->next!=NULL){
-        if (iter->key==this->key && iter->value!=this->value){
-          std::cout << "There is already an assoication with the key:" << iter->key << std::endl;
-          iter=iter->next;
+        if (otherIter->key==iter->key){
+          if(otherIter->value!=iter->value){
+            std::cout << "There is already an assoication with the key: " << iter->key << std::endl;
+          }
         }
         else{
-        add(iter->key, iter->value);
-        iter=iter->next;
+        add(otherIter->key, otherIter->value);
         }
+      iter=iter->next;
       }
-      add(iter->key, iter->value);
 }
