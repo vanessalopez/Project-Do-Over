@@ -81,63 +81,97 @@ int Map<keyType, valueType>::size () const
 /* Adds a new association between the given key and the given value.
 If the key already has an association, it should do nothing.
 */
-//search for key 
-//if key exists and doesnt have a value then add value
-//if key exists and already has a value then do nothing
-//if key doesnt exist add it and assign the value to key
-template <class keyType, class valueType>
-void Map<keyType, valueType>::add (const keyType& key, valueType& value)
-{
   // check if key is in map (think about functions youve already implemented)
   // if key is not in map
   //    create new map item
   //    set map items key and value to key and value
   //    add new item to either head or tail (remember to change next/prev pointers)
   // end
-  MapItem<keyType, valueType> *newitem = new MapItem<keyType, valueType>();
-  newitem=head;
-  //check if the list is empty
-  //if it is then just add the key and value
-  if (head==NULL){
-    newitem->key=key;
-    newitem->value=value;
-    this->count++;
-  } 
-  else{
-  //goes through list
-    while(head!=NULL){
-      //if they key is already in the list:
-        while(newitem->key!=key);
-        newitem=newitem->next;
-        }
-      //newitem is now pointing to the key, but if the key is in the list then the newitm is point to that location
-      if (newitem->key == key){
-        //then check if the key has a value associate to it
-        if (newitem->value == NULL){
-          //if it doesnt have one associated to it then add value
-          newitem->value=value;
-          tail->next=newitem;
-          newitem->prev=tail;
-          tail=newitem;
-          tail->next=NULL;
-          newitem->value = value;
-        }
-        //if it already has a value associated to it then do nothing
-        else{
-          std::cout << "You already have a value associated to this key!" << std::endl;
-        }
-      }
-      else{
+template <class keyType, class valueType>
+void Map<keyType, valueType>::add (const keyType& key, valueType& value)
+{
+    MapItem<keyType, valueType> *newitem = new MapItem<keyType, valueType>();
+    //check if the list is not empty, and if it is just add the values into the list
+    if (head==NULL){
+      newitem->key=key;
+      newitem->value=value;
       newitem=tail->next;
+      tail=newitem;
+      tail->next=NULL;
+      this->count++;
+    }
+    else if (head!=NULL){
+      /*newitem->key=key;
+      newitem->value=value;
+      tail->next=newitem;
       newitem->prev=tail;
       tail=newitem;
       tail->next=NULL;
+      this->count++;*/
+    newitem->key=key;
+    try{
+      newitem->value=get(newitem->key);
+    }
+    catch(const NoSuchElementException& e){
+      newitem->key=key;
+      newitem->value=value;
+      newitem = tail->next;
+      tail = newitem;
+      tail->next=NULL;
+      this->count++;
+    }
+  }
+}
+
+
+    //check if the list is empty
+    //if it is then just add the key and value
+
+
+
+    /*
+    if (head==NULL){
       newitem->key=key;
       newitem->value=value;
       this->count++;
-      }
+    } 
+    else{
+    //goes through list
+      while(head!=NULL){
+        //if they key is already in the list:
+          while(newitem->key!=key);
+          newitem=newitem->next;
+          }
+        //newitem is now pointing to the key, but if the key is in the list then the newitm is point to that location
+        if (newitem->key == key){
+          //then check if the key has a value associate to it
+          if (newitem->value == NULL){
+            //if it doesnt have one associated to it then add value
+            newitem->value=value;
+            tail->next=newitem;
+            newitem->prev=tail;
+            tail=newitem;
+            tail->next=NULL;
+            newitem->value = value;
+          }
+          //if it already has a value associated to it then do nothing
+          else{
+            std::cout << "You already have a value associated to this key!" << std::endl;
+          }
+        }
+        else{
+        newitem=tail->next;
+        newitem->prev=tail;
+        tail=newitem;
+        tail->next=NULL;
+        newitem->key=key;
+        newitem->value=value;
+        this->count++;
+        }
+    }
   }
 }
+*/
 
 
 /* Removes the association for the given key.
@@ -145,14 +179,11 @@ If the key has no association, it should do nothing. */
 //checks for key
 //erases the value
 template <class keyType, class valueType>
-void Map<keyType, valueType>::remove (const keyType key)
+void Map<keyType, valueType>::remove (const keyType& key)
 {
-  MapItem<keyType, valueType> *iter;
+  MapItem<keyType, valueType> *iter, *temp;
+
   iter=head;
-  //if the list is empty throw exeption
-  if (head==NULL){
-    throw NoSuchElementException();
-  }
   //go throught the list check
     while (iter!=NULL){
       //check if the key is in the list
@@ -161,17 +192,23 @@ void Map<keyType, valueType>::remove (const keyType key)
       //means that we found the place where the key matches
       //then remove the value in that location
           //connects iter->prev to iter->next
-          (iter->next)->prev=iter->prev;
+          if(iter==head){
+            head=iter->next;
+          }
+          else if(iter==tail){
+            tail=iter->prev;
+          }
+          else{
           (iter->prev)->next=iter->next;
+          (iter->next)->prev=iter->prev;
           //delete what is in iter
+          }
+          temp=iter->next;
           delete iter;
+          iter=temp;
           this->count--;
       }
-      else if(iter==tail->next){
-            std::cout << "There is no association for that key" << std::endl;
-        }
       else{
-        iter->prev=iter;
         iter=iter->next; 
       } 
     }
@@ -180,7 +217,6 @@ void Map<keyType, valueType>::remove (const keyType key)
 
 
 
-//chose on of the following: whether you want it with const or not
 
 // Returns the value associated with the given key.
 /*If the key is not in the Map, throws a NoSuchElementException
@@ -194,11 +230,11 @@ const valueType& Map<keyType, valueType>::get (const keyType & key) const
 
  iter=head; 
 
-  if (head=NULL){
-    throw NoSuchElementException();
-  }
-  while (iter->key!=NULL && iter->key!=key){
+  while (iter!=NULL && iter->key!=key){
     iter=iter->next;
+  }
+  if (iter==NULL){
+    throw NoSuchElementException();
   }
   return iter->value;
 }

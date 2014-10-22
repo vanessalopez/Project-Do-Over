@@ -11,7 +11,7 @@ struct MapItem
 
 class NoSuchElementException
 {
-
+  
 };
 
 template <class keyType, class valueType>
@@ -33,7 +33,7 @@ class Map
          If the key already has an association, it should do nothing.
       */
 
-    void remove (const keyType key);
+    void remove (const keyType& key);
      /* Removes the association for the given key.
         If the key has no association, it should do nothing. */
 
