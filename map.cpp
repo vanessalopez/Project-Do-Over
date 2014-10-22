@@ -92,7 +92,7 @@ void Map<keyType, valueType>::add (const keyType& key, valueType& value)
 {
     MapItem<keyType, valueType> *newitem = new MapItem<keyType, valueType>();
     //check if the list is not empty, and if it is just add the values into the list
-    if (head==NULL){
+    /*if (head==NULL){
       newitem->key=key;
       newitem->value=value;
       newitem=tail->next;
@@ -100,8 +100,8 @@ void Map<keyType, valueType>::add (const keyType& key, valueType& value)
       tail->next=NULL;
       this->count++;
     }
-    else if (head!=NULL){
-      /*newitem->key=key;
+    else{
+      newitem->key=key;
       newitem->value=value;
       tail->next=newitem;
       newitem->prev=tail;
@@ -115,12 +115,17 @@ void Map<keyType, valueType>::add (const keyType& key, valueType& value)
     catch(const NoSuchElementException& e){
       newitem->key=key;
       newitem->value=value;
+      if(head==NULL){
+        newitem=head;
+        this->count++;
+      }
+      else{
       newitem = tail->next;
       tail = newitem;
       tail->next=NULL;
       this->count++;
+      }
     }
-  }
 }
 
 
