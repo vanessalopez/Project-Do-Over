@@ -1,9 +1,14 @@
 #include <iostream>
-#include "map.h"
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <cstring>
+
+#include "map.h"
+#include "set.h"
+#include "movie.h"
+#include "user.h"
+
 
 
 
@@ -15,7 +20,7 @@ void newuser();
 void check();
 int users(string username);
 void moviestuff(int nummovies, string movie, string keyword);
-void moviemenu()
+void moviemenu();
 
 
 int main(int argc, char* argv[]){
