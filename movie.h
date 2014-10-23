@@ -1,3 +1,8 @@
+#ifndef __MOVIE_H__
+#define __MOVIE_H__
+
+#include "movie.h"
+
 class Movie {
   public: 
     Movie (string title);       // constructor for a movie with the given title
@@ -19,3 +24,7 @@ class Movie {
   private:
     // you get to decide what goes here
 };
+
+#include "moive.cpp"
+
+#endif

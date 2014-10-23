@@ -1,3 +1,5 @@
+#include "movie.h";
+
 Movie::Movie (string title);       // constructor for a movie with the given title
 
 Movie::Movie (const Movie & other);  // copy constructor

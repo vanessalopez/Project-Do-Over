@@ -1,3 +1,5 @@
+#include "user.h";
+
 User::User (string ID, string name);  
     /* constructor that generates a user with the given name and ID.
        While multiple users may have the same name, the ID should be unique

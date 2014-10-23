@@ -1,3 +1,8 @@
+#ifndef __USER_H__
+#define __USER_H__
+
+#include "movie.h"
+
 class User {
   public:
     User (string ID, string name);  
