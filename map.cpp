@@ -104,11 +104,10 @@ void Map<keyType, valueType>::add (const keyType& key, valueType& value)
         head=newitem;
         tail=newitem;
         this->count++;
-        //std::cout<<newitem->key;
-        //std::cout<<head->key;
       }
       else{
         tail->next=newitem;
+        newitem->prev=tail;
         tail = newitem;
         tail->next=NULL;
         this->count++;
@@ -194,7 +193,7 @@ const valueType& Map<keyType, valueType>::get (const keyType & key) const
         key, then the one of this is used. */
      // get the function of other
     //check if what is in other in in map if not add that into map.
-template <class keyType, class valueType>
+/*template <class keyType, class valueType>
 void Map<keyType, valueType>::merge (const Map<keyType, valueType> & other){
 MapItem<keyType, valueType> *otherIter;
   otherIter=other.head;
@@ -211,4 +210,17 @@ MapItem<keyType, valueType> *iter;
         }
       iter=iter->next;
       }
+}*/
+
+
+
+template <class keyType, class valueType>
+void Map<keyType, valueType>::merge (const Map<keyType, valueType> & other){
+MapItem<keyType, valueType> *otherIter;
+  otherIter=other.head;
+      while (otherIter->next!=NULL){
+        this->add(otherIter->key, otherIter->value);
+        otherIter=otherIter->next;
+      }
+      this->add(otherIter->key, otherIter->value);
 }
