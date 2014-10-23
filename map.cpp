@@ -188,32 +188,11 @@ const valueType& Map<keyType, valueType>::get (const keyType & key) const
 
 
 
-     /* Adds all the key-value associations of other to the current map.
-        If both maps (this and other) contain an association for the same
-        key, then the one of this is used. */
-     // get the function of other
-    //check if what is in other in in map if not add that into map.
-/*template <class keyType, class valueType>
-void Map<keyType, valueType>::merge (const Map<keyType, valueType> & other){
-MapItem<keyType, valueType> *otherIter;
-  otherIter=other.head;
-MapItem<keyType, valueType> *iter;
-  iter=this->head;
-      while (iter->next!=NULL){
-        if (otherIter->key==iter->key){
-          if(otherIter->value!=iter->value){
-            std::cout << "There is already an assoication with the key: " << iter->key << std::endl;
-          }
-        }
-        else{
-        add(otherIter->key, otherIter->value);
-        }
-      iter=iter->next;
-      }
-}*/
-
-
-
+/* Adds all the key-value associations of other to the current map.
+  If both maps (this and other) contain an association for the same
+  key, then the one of this is used. */
+// get the function of other
+//check if what is in other in in map if not add that into map.
 template <class keyType, class valueType>
 void Map<keyType, valueType>::merge (const Map<keyType, valueType> & other){
 MapItem<keyType, valueType> *otherIter;
