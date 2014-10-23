@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <cstring>
+#include <string>
 
 #include "map.h"
 
@@ -16,6 +17,31 @@ Map<string, string> movies;
 Map<string, string> moviekeys;
 
 int main(int argc, char* argv[]){
+	string userline;
+	int numusers=0;
+
+if (argc != 3){
+    cout << "You did not enter the correct number of arguments. (User information and movie information)" << endl;
+      return 0;
+}
+  ifstream userfile;
+  userfile.open(argv[1]);
+
+  //checks if the file can open
+  if (userfile.fail()){
+      cout << "Error! Could not read file!" << endl;
+      userfile.close();
+      return 0;
+  }
+
+  //counts the number of lines and users in the file
+  while (getline(userfile, userline)){
+    if(userline.find("BEGIN")){
+      numusers++;
+    }
+  }
+  cout << numusers;
+
 
 	cout << "Welcome!" << endl;
 	mainmenu();
@@ -47,7 +73,6 @@ void mainmenu(){
 	  	}
 	    catch(const exception &e){
 	  		cout << "ERROR! You have entered the incorrect username!";
-	  		mainmenu();
 	  	}
   	} 
   	else if (choice == 2){
@@ -64,7 +89,6 @@ void mainmenu(){
 	    }
 	    catch(const exception &e){
 	    	cout << "ERROR! That username is already taken!";
-	    	mainmenu();
 	    }
 	 }
 	else if (choice == 3){
@@ -80,6 +104,7 @@ void mainmenu(){
 void moviemenu(){
   int option;
   string moviechoice;
+  string key;
 
   cout << "1. Search movie by title" << endl;
   cout << "2. Search movie by key" << endl;
@@ -95,17 +120,22 @@ void moviemenu(){
    	}
    	catch(const exception &e){
    		cout << "Error movie not in list!" << endl;
-   		moviemenu();
    	}
     //seach (moviechoice, title);
 }
   else if (option == 2){
   	try{
   		cout << "Enter movie key" << endl;
+  		cin>>key;
+  		try{
+			moviekeys.get(key);
+  		}
+  		catch(const exception &e){
+	   		cout << "Error movie not in list!" << endl;
+   	}
   	}
     catch(const exception &e){
     	cout << "Key not found!" << endl;
-    	moviemenu();
     }
     // search (moviechoice, key);
 }
@@ -115,6 +145,6 @@ void moviemenu(){
 }
   else{
     cout << "You have entered an incorrect key." << endl;
-    moviemenu();
+    return;
 }
 }
