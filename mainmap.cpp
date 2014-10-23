@@ -40,7 +40,6 @@ if (argc != 3){
       numusers++;
     }
   }
-  cout << numusers;
 
 
 	cout << "Welcome!" << endl;
