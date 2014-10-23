@@ -182,7 +182,7 @@ const valueType& Map<keyType, valueType>::get (const keyType & key) const
   if (iter==NULL){
     throw NoSuchElementException();
   }
-  //throw an exception is 
+  //throw an exception 
     return iter->value;
 }
 
