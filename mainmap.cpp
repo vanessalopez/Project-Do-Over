@@ -18,7 +18,11 @@ Map<string, string> moviekeys;
 
 int main(int argc, char* argv[]){
 	string userline;
+  string movieline;
 	int numusers=0;
+  int usercount=0;
+  int nummovies=0;
+  int moviecount=0;
 
 if (argc != 3){
     cout << "You did not enter the correct number of arguments. (User information and movie information)" << endl;
@@ -36,11 +40,32 @@ if (argc != 3){
 
   //counts the number of lines and users in the file
   while (getline(userfile, userline)){
+    usercount++;
     if(userline.find("BEGIN")){
       numusers++;
     }
   }
+  userfile.close();
 
+
+
+  ifstream moviefile;
+  moviefile.open(argv[2]);
+
+  if (moviefile.fail()){
+      cout << "Error! Could not read file!" << endl;
+      moviefile.close();
+      return 0;
+  }
+
+  //counts the number of lines and users in the file
+  while (getline(moviefile, movieline)){
+    moviecount++;
+    if(userline.find("BEGIN")){
+      nummovies++;
+    }
+  }
+  moviefile.close();
 
 	cout << "Welcome!" << endl;
 	mainmenu();
