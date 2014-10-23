@@ -47,6 +47,8 @@ class Map
         If both maps (this and other) contain an association for the same
         key, then the one of this is used. */
 
+    void print() const; //prints everything in the array
+
   private:
      /* The head and tail of the linked list you're using to store
         all the associations. */

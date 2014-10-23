@@ -172,7 +172,7 @@ const valueType& Map<keyType, valueType>::get (const keyType & key) const
 
  iter=head; 
 
-  if (iter==NULL){
+  if (head==NULL){
     throw NoSuchElementException();
   }
   
@@ -202,4 +202,16 @@ MapItem<keyType, valueType> *otherIter;
         otherIter=otherIter->next;
       }
       this->add(otherIter->key, otherIter->value);
+}
+
+template <class keyType, class valueType> void Map<keyType, valueType>::print() const
+{
+  MapItem<keyType, valueType> *iter = head;
+  std::cout << "All key and values: " << std::endl;
+
+  while (iter->next != NULL)
+  {
+    iter = iter->next;
+    std::cout << "key: " << iter->key << " - " << "value: " << iter->value << std::endl;
+  }
 }
